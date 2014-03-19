@@ -21,6 +21,12 @@ for name in config.options('paths'):
     command.append('-o')
     command.append(name)
 
+    if 'grabber_options' in config.sections():
+        for arg in config.options('grabber_options'):
+            command.append(arg)
+            if config.get('grabber_options', arg):
+                command.append(config.get('grabber_options', arg))
+
     url = '%s%s' % ( prefix, config.get('paths', name) )
     command.append(url)
 
