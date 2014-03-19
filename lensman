@@ -6,7 +6,7 @@ arguments = [ './webkit2png', '-W320', '-W640', '-W1024' ]
 prefix = 'https://www.gov.uk'
 
 config = ConfigParser.SafeConfigParser()
-config.read(['frontend.conf'])
+config.read(['example.conf'])
 
 
 for name in config.options('paths'):
