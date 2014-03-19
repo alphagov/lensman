@@ -5,16 +5,20 @@ import argparse
 import subprocess
 
 
-parser = argparse.ArgumentParser(description='lensman')
+parser = argparse.ArgumentParser(
+    description='Capture multiple webpages with one command'
+)
 parser.add_argument(
     '-e', '--environment',
     nargs=1,
     default=['live'],
+    help='which prefix to use when grabbing'
 )
 parser.add_argument(
     'configuration_files',
-    metavar='conf_file',
+    metavar='filename',
     nargs='+',
+    help='INI-style configuration file'
 )
 args = parser.parse_args()
 
