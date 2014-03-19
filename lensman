@@ -29,8 +29,9 @@ if 'grabber' in config.sections():
 for name in config.options('paths'):
     command = [ grabber ]
 
-    for width in config.options('widths'):
-        command.append( '-W%s' % config.get('widths', width) )
+    if 'widths' in config.sections():
+        for width in config.options('widths'):
+            command.append( '-W%s' % config.get('widths', width) )
 
     command.append('-o')
     command.append(name)
