@@ -1,0 +1,12 @@
+import subprocess
+
+
+arguments = [ './webkit2png', '-W320', '-W640', '-W1024' ]
+prefix = 'https://www.gov.uk'
+paths = [ '/', '/tax-disc' ]
+
+for path in paths:
+    url = '%s%s' % ( prefix, path )
+    command = arguments
+    command.append(url)
+    subprocess.call( command, shell=False )
