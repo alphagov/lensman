@@ -2,15 +2,18 @@ import ConfigParser
 import subprocess
 
 
-arguments = [ './webkit2png' ]
 prefix = 'https://www.gov.uk'
 
 config = ConfigParser.SafeConfigParser()
 config.read(['example.conf'])
 
+webkit2png = 'webkit2png'
+if 'grabber' in config.sections():
+    grabber = config.get('grabber', 'command')
+
 
 for name in config.options('paths'):
-    command = list(arguments)
+    command = [ grabber ]
 
     for width in config.options('widths'):
         command.append( '-W%s' % config.get('widths', width) )
