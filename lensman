@@ -5,6 +5,11 @@ import subprocess
 
 parser = argparse.ArgumentParser(description='lensman')
 parser.add_argument(
+    '-e', '--environment',
+    nargs=1,
+    default=['live'],
+)
+parser.add_argument(
     'configuration_files',
     metavar='conf_file',
     nargs='+',
@@ -34,7 +39,10 @@ for name in config.options('paths'):
             if config.get('grabber_options', arg):
                 command.append(config.get('grabber_options', arg))
 
-    url = '%s%s' % ( prefix, config.get('paths', name) )
+    url = '%s%s' % (
+            config.get('prefix', args.environment[0]),
+            config.get('paths', name),
+        )
     command.append(url)
 
     subprocess.call( command, shell=False )
