@@ -10,11 +10,12 @@ config.read(['example.conf'])
 
 
 for name in config.options('paths'):
-    url = '%s%s' % ( prefix, config.get('paths', name) )
     command = list(arguments)
-    command.append(url)
 
     command.append('-o')
     command.append(name)
+
+    url = '%s%s' % ( prefix, config.get('paths', name) )
+    command.append(url)
 
     subprocess.call( command, shell=False )
