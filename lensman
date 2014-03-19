@@ -1,11 +1,18 @@
 import ConfigParser
+import argparse
 import subprocess
 
 
-prefix = 'https://www.gov.uk'
+parser = argparse.ArgumentParser(description='lensman')
+parser.add_argument(
+    'configuration_files',
+    metavar='conf_file',
+    nargs='+',
+)
+args = parser.parse_args()
 
 config = ConfigParser.SafeConfigParser()
-config.read(['example.conf'])
+config.read(args.configuration_files)
 
 webkit2png = 'webkit2png'
 if 'grabber' in config.sections():
