@@ -2,7 +2,7 @@ import ConfigParser
 import subprocess
 
 
-arguments = [ './webkit2png', '-W320', '-W640', '-W1024' ]
+arguments = [ './webkit2png' ]
 prefix = 'https://www.gov.uk'
 
 config = ConfigParser.SafeConfigParser()
@@ -11,6 +11,9 @@ config.read(['example.conf'])
 
 for name in config.options('paths'):
     command = list(arguments)
+
+    for width in config.options('widths'):
+        command.append( '-W%s' % config.get('widths', width) )
 
     command.append('-o')
     command.append(name)
